@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "MenuItems API", type: :request do
-  let!(:restaurant) { create(:restaurant, name: "Restaurante Central") }
-  let!(:menu1) { create(:menu, restaurant: restaurant, name: "Almoço") }
-  let!(:menu2) { create(:menu, restaurant: restaurant, name: "Jantar") }
+  let!(:restaurant) { create(:restaurant, name: "Test Restaurant") }
+  let!(:menu1) { create(:menu, restaurant: restaurant, name: "Lunch") }
+  let!(:menu2) { create(:menu, restaurant: restaurant, name: "Dinner") }
   let!(:item) { create(:menu_item, name: "Pizza", price: 40) }
 
   before do
@@ -16,12 +16,14 @@ RSpec.describe "MenuItems API", type: :request do
       get "/menu_items"
 
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body)["menu_items"]
+      json = JSON.parse(response.body, symbolize_names: true)
+      
+      first_item = json[:menu_items].first
 
-      expect(json.first["name"]).to eq("Pizza")
-      expect(json.first["price"]).to eq(40)
-      expect(json.first["menus"].size).to eq(2)
-      expect(json.first["menus"].first["restaurant"]["name"]).to eq("Restaurante Central")
+      expect(first_item[:id]).to eq(item.id)
+      expect(first_item[:name]).to eq("Pizza")
+      expect(first_item[:price]).to eq(40)
+      expect(first_item[:menu_ids]).to match_array([menu1.id, menu2.id])
     end
   end
 
@@ -32,9 +34,10 @@ RSpec.describe "MenuItems API", type: :request do
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
 
+      expect(json["id"]).to eq(item.id)
       expect(json["name"]).to eq("Pizza")
       expect(json["price"]).to eq(40)
-      expect(json["menus"].map { |m| m["name"] }).to contain_exactly("Almoço", "Jantar")
+      expect(json["menu_ids"]).to match_array([menu1.id, menu2.id])
     end
   end
 end

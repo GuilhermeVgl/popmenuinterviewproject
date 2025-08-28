@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Menus API", type: :request do
-  let!(:restaurant) { create(:restaurant, name: "Restaurante Central") }
-  let!(:menu) { create(:menu, restaurant: restaurant, name: "Almoço") }
+  let!(:restaurant) { create(:restaurant, name: "Test Restaurant") }
+  let!(:menu) { create(:menu, restaurant: restaurant, name: "Lunch") }
   let!(:item) { create(:menu_item, name: "Pizza", price: 40) }
 
   before do
@@ -16,8 +16,8 @@ RSpec.describe "Menus API", type: :request do
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)["menus"]
 
-      expect(json.first["name"]).to eq("Almoço")
-      expect(json.first["restaurant"]["name"]).to eq("Restaurante Central")
+      expect(json.first["name"]).to eq("Lunch")
+      expect(json.first["restaurant_id"]).to eq(1)
       expect(json.first["menu_items"].first["name"]).to eq("Pizza")
       expect(json.first["menu_items"].first["price"]).to eq(40)
     end
@@ -30,8 +30,8 @@ RSpec.describe "Menus API", type: :request do
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
 
-      expect(json["name"]).to eq("Almoço")
-      expect(json["restaurant"]["name"]).to eq("Restaurante Central")
+      expect(json["name"]).to eq("Lunch")
+      expect(json["restaurant_id"]).to eq(restaurant.id)
       expect(json["menu_items"].size).to eq(1)
     end
   end
