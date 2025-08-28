@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   resources :menus, only: [:index, :show]
   resources :menu_items, only: [:index, :show]
   resources :restaurants, only: %i[index show]
+
+  post 'import/restaurants', to: 'imports#create'
+
+  match "*path", to: "application#not_found", via: :all
 end
