@@ -35,15 +35,15 @@ A RESTful API built with **Rails 8** to manage restaurants, menus, and menu item
 
 ## **API Endpoints**
 
-| Method | Endpoint          | Description                                   |
-| ------ | ----------------- | --------------------------------------------- |
-| GET    | /restaurants      | List all restaurants with menus and items     |
-| GET    | /restaurants/\:id | Get a single restaurant                       |
-| GET    | /menus            | List all menus with items and restaurant      |
-| GET    | /menus/\:id       | Get a single menu                             |
-| GET    | /menu\_items      | List all menu items with menus and restaurant |
-| GET    | /menu\_items/\:id | Get a single menu item                        |
-| POST   | /imports          | Import restaurants, menus, and items via JSON |
+| Method | Endpoint           | Description                                   |
+| ------ | ------------------ | --------------------------------------------- |
+| GET    | /restaurants       | List all restaurants with menus and items     |
+| GET    | /restaurants/\:id  | Get a single restaurant                       |
+| GET    | /menus             | List all menus with items and restaurant      |
+| GET    | /menus/\:id        | Get a single menu                             |
+| GET    | /menu\_items       | List all menu items with menus and restaurant |
+| GET    | /menu\_items/\:id  | Get a single menu item                        |
+| POST   | /import/restaurants| Import restaurants, menus, and items via JSON |
 
 ---
 
