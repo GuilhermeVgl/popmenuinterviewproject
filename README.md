@@ -30,6 +30,9 @@ A RESTful API built with **Rails 8** to manage restaurants, menus, and menu item
 
   * Validates JSON format and required fields
   * Returns structured errors for invalid input or internal errors
+ 
+* **Postman**
+  * Collection available (`popmenuinterviewproject.postman_collection.json`) to quickly test endpoints
 
 ---
 
@@ -47,7 +50,18 @@ A RESTful API built with **Rails 8** to manage restaurants, menus, and menu item
 
 ---
 
-## **JSON Import Example**
+## **JSON Import Endpoint**
+
+You can bulk import restaurants, menus, and menu items using a JSON file.
+
+**Endpoint:**  
+`POST /import/restaurants`
+
+**Instructions:**
+
+* In Postman (or any HTTP client), go to the **Body** tab.
+* Select **form-data**.
+* Add a key named `file` and set its value to the JSON file you want to upload (e.g., `restaurant_data.json`).
 
 ```json
 {
@@ -72,13 +86,6 @@ A RESTful API built with **Rails 8** to manage restaurants, menus, and menu item
     }
   ]
 }
-```
-
-**Request Example:**
-
-```bash
-curl -X POST "http://localhost:3000/imports" \
-  -F "file=@restaurant_data.json"
 ```
 
 **Response Example:**
