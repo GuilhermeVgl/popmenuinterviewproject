@@ -139,7 +139,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/import/restaurants",
+					"raw": "http://localhost:3000/restaurants/import",
 					"protocol": "http",
 					"host": [
 						"localhost"

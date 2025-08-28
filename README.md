@@ -46,7 +46,7 @@ A RESTful API built with **Rails 8** to manage restaurants, menus, and menu item
 | GET    | /menus/\:id        | Get a single menu                             |
 | GET    | /menu\_items       | List all menu items with menus and restaurant |
 | GET    | /menu\_items/\:id  | Get a single menu item                        |
-| POST   | /import/restaurants| Import restaurants, menus, and items via JSON |
+| POST   | /restaurants/import| Import restaurants, menus, and items via JSON |
 
 ---
 
@@ -55,7 +55,7 @@ A RESTful API built with **Rails 8** to manage restaurants, menus, and menu item
 You can bulk import restaurants, menus, and menu items using a JSON file.
 
 **Endpoint:**  
-`POST /import/restaurants`
+`POST /restaurants/import`
 
 **Instructions:**
 
