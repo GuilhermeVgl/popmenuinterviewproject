@@ -24,9 +24,11 @@ class RestaurantsController < ApplicationController
       name: restaurant.name,
       menus: restaurant.menus.map do |menu|
         {
+          id: menu.id,
           name: menu.name,
           menu_items: menu.menu_items.map do |item|
             {
+              id: item.id,
               name: item.name,
               price: item.price.to_f
             }

@@ -22,9 +22,9 @@ class MenusController < ApplicationController
   def format_menu(menu)
     {
       name: menu.name,
-      restaurant: { name: menu.restaurant.name },
+      restaurant_id: menu.restaurant.id,
       menu_items: menu.menu_items.map do |item|
-        { name: item.name, price: item.price.to_f }
+        { id: item.id, name: item.name, price: item.price.to_f }
       end
     }
   end

@@ -22,14 +22,10 @@ class MenuItemsController < ApplicationController
 
   def format_menu_item(item)
     {
+      id: item.id,
       name: item.name,
       price: item.price.to_f,
-      menus: item.menus.map do |menu|
-        {
-          name: menu.name,
-          restaurant: { name: menu.restaurant.name }
-        }
-      end
+      menu_ids: item.menus.pluck(:id)
     }
   end
 end

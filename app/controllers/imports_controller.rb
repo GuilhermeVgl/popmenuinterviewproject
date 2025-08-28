@@ -13,6 +13,10 @@ class ImportsController < ApplicationController
       render json: result.logs, status: result.success? ? :created : :unprocessable_entity
     rescue JSON::ParserError
       render json: { error: "Invalid JSON format" }, status: :bad_request
+    rescue StandardError => e
+      Rails.logger.error e.full_message
+
+      render json: { error: "An internal error occurred. Please try again later." }, status: :internal_server_error
     end
   end
 end
